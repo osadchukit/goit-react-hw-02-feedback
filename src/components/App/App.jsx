@@ -4,11 +4,8 @@ import { Statistics } from 'components/Statistics/Statistics';
 import { Box } from './App.styled';
 
 class App extends React.Component {
-  static defaultProps = {
-    positivePercentage: 0,
-  };
-
-  static propsType = {};
+  // static defaultProps = {};
+  // static propsType = {};
 
   state = {
     good: 0,
