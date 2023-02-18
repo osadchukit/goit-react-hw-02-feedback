@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 export const Statistics = ({ good, neutral, bad }) => {
   return good + neutral + bad === 0 ? (
@@ -24,4 +24,10 @@ export const Statistics = ({ good, neutral, bad }) => {
       </p>
     </div>
   );
+};
+
+Statistics.propTypes = {
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
 };

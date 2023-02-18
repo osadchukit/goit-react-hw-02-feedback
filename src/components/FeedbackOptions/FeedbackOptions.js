@@ -1,8 +1,9 @@
 import { Bytton } from 'components/App/App.styled';
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 export const FeedbackOptions = ({ addGood, addNeutral, addBad }) => {
+  console.log(addGood);
   return (
     <div>
       <Bytton type="button" onClick={addGood}>
@@ -17,3 +18,9 @@ export const FeedbackOptions = ({ addGood, addNeutral, addBad }) => {
     </div>
   );
 };
+
+// FeedbackOptions.propTypes = {
+//   addGood: PropTypes.?.isRequired,
+//   addNeutral: PropTypes.?.isRequired,
+//   addBad: PropTypes.?.isRequired,
+// };
