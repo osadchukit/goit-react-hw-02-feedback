@@ -1,9 +1,9 @@
-import React from 'react';
+import { Component } from 'react';
 import { FeedbackOptions } from 'components/FeedbackOptions/FeedbackOptions';
 import { Statistics } from 'components/Statistics/Statistics';
 import { Box } from './App.styled';
 
-class App extends React.Component {
+class App extends Component {
   // static defaultProps = {};
   // static propsType = {};
 
@@ -31,6 +31,15 @@ class App extends React.Component {
     }));
   };
 
+  countTotalFeedback = () =>
+    this.state.good + this.state.neutral + this.state.bad;
+
+  countPositiveFeedbackPercentage = () =>
+    Math.round(
+      (100 / (this.state.good + this.state.neutral + this.state.bad)) *
+        this.state.good
+    );
+
   render() {
     return (
       <Box>
@@ -45,6 +54,8 @@ class App extends React.Component {
           good={this.state.good}
           neutral={this.state.neutral}
           bad={this.state.bad}
+          countTotalFeedback={this.countTotalFeedback}
+          countPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage}
         ></Statistics>
       </Box>
     );

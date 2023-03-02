@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Statistics = ({ good, neutral, bad }) => {
+export const Statistics = ({
+  good,
+  neutral,
+  bad,
+  countTotalFeedback,
+  countPositiveFeedbackPercentage,
+}) => {
   return good + neutral + bad === 0 ? (
     <p>There is no feedback</p>
   ) : (
@@ -16,11 +22,11 @@ export const Statistics = ({ good, neutral, bad }) => {
         Bad: <span>{bad}</span>
       </p>
       <p>
-        Totall: <span>{good + neutral + bad}</span>
+        Totall: <span>{countTotalFeedback()}</span>
       </p>
       <p>
-        Positive feedback:{' '}
-        <span>{Math.round((100 / (good + neutral + bad)) * good)}%</span>
+        Positive feedback:
+        <span> {countPositiveFeedbackPercentage()}%</span>
       </p>
     </div>
   );
