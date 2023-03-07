@@ -8,9 +8,7 @@ export const Statistics = ({
   countTotalFeedback,
   countPositiveFeedbackPercentage,
 }) => {
-  return good + neutral + bad === 0 ? (
-    <p>There is no feedback</p>
-  ) : (
+  return (
     <div>
       <p>
         Good: <span>{good}</span>

@@ -35,3 +35,4 @@ INSTALL
 npx create-react-app my-app .
 npm install --save prop-types
 npm i @emotion/styled @emotion/react
+npm i nanoid

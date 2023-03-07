@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { FeedbackOptions } from 'components/FeedbackOptions/FeedbackOptions';
 import { Statistics } from 'components/Statistics/Statistics';
-import { Box } from './App.styled';
+import { Box, Section } from './App.styled';
 
 class App extends Component {
   // static defaultProps = {};
@@ -13,21 +13,9 @@ class App extends Component {
     bad: 0,
   };
 
-  addGood = () => {
-    this.setState(prevGood => ({
-      good: prevGood.good + 1,
-    }));
-  };
-
-  addNeutral = () => {
-    this.setState(prevNeutral => {
-      return { neutral: prevNeutral.neutral + 1 };
-    });
-  };
-
-  addBad = () => {
-    this.setState(prevBad => ({
-      bad: prevBad.bad + 1,
+  onLeaveFeedback = option => {
+    this.setState(prevState => ({
+      [option]: prevState[option] + 1,
     }));
   };
 
@@ -41,22 +29,32 @@ class App extends Component {
     );
 
   render() {
+    const options = Object.keys(this.state);
+    const { good, neutral, bad } = this.state;
+
     return (
       <Box>
         <h2>Please leave feedback</h2>
         <FeedbackOptions
-          addGood={this.addGood}
-          addNeutral={this.addNeutral}
-          addBad={this.addBad}
+          onLeaveFeedback={this.onLeaveFeedback}
+          options={options}
         />
-        <h2>Statistics</h2>
-        <Statistics
-          good={this.state.good}
-          neutral={this.state.neutral}
-          bad={this.state.bad}
-          countTotalFeedback={this.countTotalFeedback}
-          countPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage}
-        ></Statistics>
+        <Section>
+          <h2>Statistics</h2>
+          {good + neutral + bad === 0 ? (
+            <p>There is no feedback</p>
+          ) : (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              countTotalFeedback={this.countTotalFeedback}
+              countPositiveFeedbackPercentage={
+                this.countPositiveFeedbackPercentage
+              }
+            ></Statistics>
+          )}
+        </Section>
       </Box>
     );
   }

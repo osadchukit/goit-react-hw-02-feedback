@@ -1,25 +1,25 @@
-import { Bytton } from 'components/App/App.styled';
+import { nanoid } from 'nanoid';
+import { Button } from 'components/App/App.styled';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const FeedbackOptions = ({ addGood, addNeutral, addBad }) => {
+export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <div>
-      <Bytton type="button" onClick={addGood}>
-        Good
-      </Bytton>
-      <Bytton type="button" onClick={addNeutral}>
-        Neutral
-      </Bytton>
-      <Bytton type="button" onClick={addBad}>
-        bad
-      </Bytton>
+      {options.map(nameButton => (
+        <Button
+          key={nanoid()}
+          type="button"
+          onClick={() => onLeaveFeedback(nameButton)}
+        >
+          {nameButton[0].toUpperCase() + nameButton.slice(1)}
+        </Button>
+      ))}
     </div>
   );
 };
 
 FeedbackOptions.propTypes = {
-  addGood: PropTypes.func.isRequired,
-  addNeutral: PropTypes.func.isRequired,
-  addBad: PropTypes.func.isRequired,
+  options: PropTypes.array,
+  onLeaveFeedback: PropTypes.func,
 };
